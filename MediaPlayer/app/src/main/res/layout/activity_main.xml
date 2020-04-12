@@ -6,13 +6,43 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
+    <Button
+        android:id="@+id/pauseBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginEnd="22dp"
+        android:layout_marginRight="22dp"
+        android:text="||"
+        app:layout_constraintBaseline_toBaselineOf="@+id/startBtn"
+        app:layout_constraintEnd_toStartOf="@+id/startBtn" />
 
+    <Button
+        android:id="@+id/startBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="296dp"
+        android:text="▶"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/stopBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="19dp"
+        android:layout_marginLeft="19dp"
+        android:text="■"
+        app:layout_constraintBaseline_toBaselineOf="@+id/startBtn"
+        app:layout_constraintStart_toEndOf="@+id/startBtn" />
+
+    <com.example.mediaplayer.VolumeControlView
+        android:id="@+id/imageView"
+        android:layout_width="223dp"
+        android:layout_height="124dp"
+        android:layout_marginTop="116dp"
+        android:src="@drawable/knob"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
