@@ -38,4 +38,17 @@ class MyAdapter(val items: ArrayList<String>)
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.textView.text = items[position]
     }
+
+
+    fun moveItem(oldPos:Int, newPos:Int){
+        val item = items.get(oldPos)
+        items.removeAt(oldPos)
+        items.add(newPos, item)
+        notifyItemMoved(oldPos, newPos)
+    }
+
+    fun removeItem(pos:Int){
+        items.removeAt(pos)
+        notifyItemRemoved(pos)
+    }
 }
