@@ -18,6 +18,8 @@
     <TextView
         android:id="@+id/textView3"
         android:layout_width="match_parent"
-        android:layout_height="57dp"
+        android:layout_height="40dp"
+        android:layout_margin="10dp"
+        android:padding="10dp"
         android:text="TextView" />
 </LinearLayout>

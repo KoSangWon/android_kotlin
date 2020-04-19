@@ -26,7 +26,6 @@ class MyAdapter(val items: ArrayList<String>)
                 itemView.setOnClickListener {
                     itemClickListener?.OnItemClick(this, it, items[adapterPosition], adapterPosition)
                 }
-                textView3.visibility = GONE
             }
         }
 
@@ -42,6 +41,7 @@ class MyAdapter(val items: ArrayList<String>)
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.textView.text = items[position]
         holder.textView3.text = items[position]
+        holder.textView3.visibility = GONE
     }
 
 
