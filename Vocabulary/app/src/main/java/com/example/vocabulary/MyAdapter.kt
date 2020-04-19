@@ -11,11 +11,20 @@ class MyAdapter(val items: ArrayList<String>)
     :RecyclerView.Adapter<MyAdapter.MyViewHolder>()
 {
 
-    
+    interface OnItemClickListener{
+        fun OnItemClick(holder: MyViewHolder, view:View, data:String, position: Int)
+    }
+
+    var itemClickListener:OnItemClickListener?=null
 
     inner class MyViewHolder(itemView:View): RecyclerView.ViewHolder(itemView){
         var textView: TextView = itemView.findViewById(R.id.textView)
-    }
+        init{
+                itemView.setOnClickListener {
+                    itemClickListener?.OnItemClick(this, it, items[adapterPosition], adapterPosition)
+                }
+            }
+        }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.row, parent, false)
