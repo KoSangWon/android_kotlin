@@ -11,6 +11,9 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_main.textView2
+import kotlinx.android.synthetic.main.row.*
+import kotlinx.android.synthetic.main.row.view.*
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -46,7 +49,16 @@ class MainActivity : AppCompatActivity() {
             ) {
                 if(isTtsReady)
                     tts.speak(data, TextToSpeech.QUEUE_ADD, null, null)
-                Toast.makeText(applicationContext, words[data], Toast.LENGTH_SHORT).show()
+                //Toast.makeText(applicationContext, words[data], Toast.LENGTH_SHORT).show()
+
+                view.textView3.text = words[data]
+                if(view.textView3.visibility == View.GONE) {
+
+                    view.textView3.visibility = View.VISIBLE;
+                }
+                else {
+                    view.textView3.visibility = View.GONE;
+                }
             }
         }
 
@@ -67,7 +79,6 @@ class MainActivity : AppCompatActivity() {
                 //TODO("Not yet implemented")
                 adapter.removeItem(viewHolder.adapterPosition)
             }
-
         }
         val itemTouchHelper = ItemTouchHelper(simpleCallback)
         itemTouchHelper.attachToRecyclerView(recyclerView)

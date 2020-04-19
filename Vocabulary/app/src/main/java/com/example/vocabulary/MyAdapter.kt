@@ -2,6 +2,7 @@ package com.example.vocabulary
 
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -19,10 +20,13 @@ class MyAdapter(val items: ArrayList<String>)
 
     inner class MyViewHolder(itemView:View): RecyclerView.ViewHolder(itemView){
         var textView: TextView = itemView.findViewById(R.id.textView)
+        var textView3: TextView = itemView.findViewById(R.id.textView3)
+
         init{
                 itemView.setOnClickListener {
                     itemClickListener?.OnItemClick(this, it, items[adapterPosition], adapterPosition)
                 }
+                textView3.visibility = GONE
             }
         }
 
@@ -37,6 +41,7 @@ class MyAdapter(val items: ArrayList<String>)
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.textView.text = items[position]
+        holder.textView3.text = items[position]
     }
 
 
