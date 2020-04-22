@@ -7,6 +7,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 class MyAdapter(val items: ArrayList<String>): RecyclerView.Adapter<MyAdapter.MyViewHolder>() {
+
+    
+
     inner class MyViewHolder(itemView:View):RecyclerView.ViewHolder(itemView){
         var voca:TextView = itemView.findViewById(R.id.voca)
     }
@@ -17,7 +20,7 @@ class MyAdapter(val items: ArrayList<String>): RecyclerView.Adapter<MyAdapter.My
     }
 
     override fun getItemCount(): Int {
-        return items.size
+        return 5
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
