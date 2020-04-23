@@ -5,13 +5,24 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import java.util.*
+import kotlin.collections.ArrayList
 
 class MyAdapter(val items: ArrayList<String>): RecyclerView.Adapter<MyAdapter.MyViewHolder>() {
 
-    
+    interface OnItemClickListener{
+        fun OnItemClick(holder: MyViewHolder, view:View, data:String, position: Int)
+    }
+
+    var itemClickListener:OnItemClickListener?=null
 
     inner class MyViewHolder(itemView:View):RecyclerView.ViewHolder(itemView){
         var voca:TextView = itemView.findViewById(R.id.voca)
+        init{
+            itemView.setOnClickListener {
+                itemClickListener?.OnItemClick(this, it, items[adapterPosition], adapterPosition)
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {

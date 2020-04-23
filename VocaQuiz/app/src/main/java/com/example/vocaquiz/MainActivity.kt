@@ -2,8 +2,11 @@ package com.example.vocaquiz
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.row.view.*
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
@@ -11,6 +14,7 @@ class MainActivity : AppCompatActivity() {
     var englishArray = ArrayList<String>()
     var meaningArray = ArrayList<String>()
     var lineCnt = 0
+    lateinit var answer:String
     lateinit var adapter:MyAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,17 +26,37 @@ class MainActivity : AppCompatActivity() {
     private fun init(){
         readFile()
         recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+
+
+
+
         adapter = MyAdapter(meaningArray)
         recyclerView.adapter = adapter
 
         val random = Random()
         var num = random.nextInt(lineCnt)
         english.text = englishArray[num]
+        answer = meaningArray[num]
 
 
+        adapter.itemClickListener = object:MyAdapter.OnItemClickListener{
+            override fun OnItemClick(
+                holder: MyAdapter.MyViewHolder,
+                view: View,
+                data: String,
+                position: Int
+            ) {
+
+
+
+            }
+        }
 
     }
 
+    fun showQuiz(){
+
+    }
 
 
     fun readFile(){
