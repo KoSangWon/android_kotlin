@@ -16,9 +16,11 @@ class MyAdapter(val items: ArrayList<String>): RecyclerView.Adapter<MyAdapter.My
     }
 
     var itemClickListener:OnItemClickListener?=null
+    var exampleArray = ArrayList<Int>()
 
     inner class MyViewHolder(itemView:View):RecyclerView.ViewHolder(itemView){
         var voca:TextView = itemView.findViewById(R.id.voca)
+
         init{
             itemView.setOnClickListener {
                 itemClickListener?.OnItemClick(this, it, items[adapterPosition], adapterPosition)
@@ -37,7 +39,32 @@ class MyAdapter(val items: ArrayList<String>): RecyclerView.Adapter<MyAdapter.My
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val len = items.size
-        var num = Random().nextInt(len)
-        holder.voca.text = items[num]
+
+        while(exampleArray.size < 5){
+            var num = Random().nextInt(len)
+            if(!exampleArray.contains(num))
+                exampleArray.add(num)
+        }
+
+        holder.voca.text = items[exampleArray[position]]
     }
+
+
 }
+
+
+
+
+//
+//var flag = false
+//
+//while(!flag){
+//    for(i in 0 until isVisited.size){
+//        if(isVisited[i] == num) {
+//            num = Random().nextInt(len)
+//            continue
+//        }
+//    }
+//    flag = true
+//}
+//isVisited.add(num)
