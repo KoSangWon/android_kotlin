@@ -33,10 +33,11 @@ class MainActivity : AppCompatActivity() {
         adapter = MyAdapter(meaningArray)
         recyclerView.adapter = adapter
 
-        val random = Random()
-        var num = random.nextInt(lineCnt)
-        english.text = englishArray[num]
-        answer = meaningArray[num]
+
+//        val random = Random()
+//        var num = random.nextInt(lineCnt)
+//        english.text = englishArray[num]
+//        answer = meaningArray[num]
 
 
         adapter.itemClickListener = object:MyAdapter.OnItemClickListener{
@@ -46,18 +47,11 @@ class MainActivity : AppCompatActivity() {
                 data: String,
                 position: Int
             ) {
-
-
-
+                Toast.makeText(applicationContext, "정답입니다!", Toast.LENGTH_SHORT).show()
             }
         }
 
     }
-
-    fun showQuiz(){
-
-    }
-
 
     fun readFile(){
         val scan = Scanner(resources.openRawResource(R.raw.words))
@@ -67,7 +61,7 @@ class MainActivity : AppCompatActivity() {
             words[word] = meaning
             englishArray.add(word)//영어가 담겨 있는 배열
             meaningArray.add(meaning)//뜻 들이 담겨 있는 배열
-            lineCnt++
+            //lineCnt++
         }
         scan.close()
     }

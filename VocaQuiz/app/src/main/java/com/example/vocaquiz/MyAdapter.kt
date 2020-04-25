@@ -7,6 +7,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import java.util.*
 import kotlin.collections.ArrayList
+import java.util.*
 
 class MyAdapter(val items: ArrayList<String>): RecyclerView.Adapter<MyAdapter.MyViewHolder>() {
 
@@ -35,6 +36,8 @@ class MyAdapter(val items: ArrayList<String>): RecyclerView.Adapter<MyAdapter.My
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.voca.text = items[position]
+        val len = items.size
+        var num = Random().nextInt(len)
+        holder.voca.text = items[num]
     }
 }
