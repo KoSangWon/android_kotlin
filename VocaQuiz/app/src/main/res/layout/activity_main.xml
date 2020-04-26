@@ -4,13 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFECB4"
     android:orientation="vertical"
     tools:context=".MainActivity">
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="60dp"
         android:layout_marginTop="0dp"
         android:layout_marginBottom="0dp"
         android:gravity="center"
@@ -26,8 +27,8 @@
     <TextView
         android:id="@+id/english"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_marginBottom="30dp"
+        android:layout_height="60dp"
+        android:layout_marginBottom="0dp"
         android:gravity="center"
         android:text="TextView"
         android:textColor="#009688"
@@ -39,12 +40,35 @@
         android:id="@+id/scoreText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:layout_margin="10dp"
+        android:shadowColor="#FF5722"
+        android:text="TextView"
+        android:textColor="#FF5722" />
+
+    <TextView
+        android:id="@+id/solved"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:shadowColor="#FF5722"
+        android:text="TextView"
+        android:textColor="#FF5722" />
+
+    <TextView
+        android:id="@+id/correct"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:shadowColor="#FF5722"
+        android:text="TextView"
+        android:textColor="#FF5722" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginTop="15dp"
+        android:background="#FFECB4">
 
     </androidx.recyclerview.widget.RecyclerView>
 
