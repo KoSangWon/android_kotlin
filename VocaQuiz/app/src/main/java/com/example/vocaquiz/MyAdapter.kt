@@ -41,9 +41,11 @@ class MyAdapter(val items: ArrayList<String>): RecyclerView.Adapter<MyAdapter.My
         val len = items.size
 
         while(exampleArray.size < 5){
-            var num = Random().nextInt(len)
-            if(!exampleArray.contains(num))
+            val num = Random().nextInt(len)
+            if(!exampleArray.contains(num)) {
                 exampleArray.add(num)
+                exampleArray = exampleArray.shuffled() as ArrayList<Int>
+            }
         }
 
         holder.voca.text = items[exampleArray[position]]
@@ -51,20 +53,3 @@ class MyAdapter(val items: ArrayList<String>): RecyclerView.Adapter<MyAdapter.My
 
 
 }
-
-
-
-
-//
-//var flag = false
-//
-//while(!flag){
-//    for(i in 0 until isVisited.size){
-//        if(isVisited[i] == num) {
-//            num = Random().nextInt(len)
-//            continue
-//        }
-//    }
-//    flag = true
-//}
-//isVisited.add(num)
