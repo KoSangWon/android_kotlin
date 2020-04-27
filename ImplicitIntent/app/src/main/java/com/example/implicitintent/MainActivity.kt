@@ -7,6 +7,7 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -18,6 +19,17 @@ class MainActivity : AppCompatActivity() {
         init()
     }
 
+    fun callAlertDlg(){
+        val builder = AlertDialog.Builder(this)
+        builder.setMessage("반드시 CALL_PHONE 권한이 허용되어야 합니다.")
+            .setTitle("권한 허용")
+        builder.setPositiveButton("OK"){
+            _,_ -> ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CALL_PHONE), CALL_REQUEST)
+        }
+        val dlg = builder.create()
+        dlg.show()
+    }
+
     fun callAction(){
         val number = Uri.parse("tel:010-3477-8476")
         val callIntent = Intent(Intent.ACTION_CALL, number)
@@ -26,7 +38,8 @@ class MainActivity : AppCompatActivity() {
                 Manifest.permission.CALL_PHONE
             ) != PackageManager.PERMISSION_GRANTED
         ) {
-            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CALL_PHONE), CALL_REQUEST)
+            callAlertDlg()
+            //ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CALL_PHONE), CALL_REQUEST)
             //return
         }
         else {
