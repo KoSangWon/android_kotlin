@@ -7,42 +7,50 @@
     tools:context=".MainActivity">
 
     <Button
-        android:id="@+id/callbtn"
+        android:id="@+id/webbtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="105dp"
-        android:text="전화걸기"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginTop="48dp"
+        android:foregroundGravity="center"
+        android:gravity="center"
+        android:text="네이버"
+        app:layout_constraintStart_toStartOf="@+id/msgbtn"
+        app:layout_constraintTop_toBottomOf="@+id/msgbtn" />
 
     <Button
         android:id="@+id/msgbtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="74dp"
+        android:layout_marginTop="52dp"
+        android:foregroundGravity="center"
+        android:gravity="center"
         android:text="메시지"
         app:layout_constraintStart_toStartOf="@+id/callbtn"
         app:layout_constraintTop_toBottomOf="@+id/callbtn" />
 
     <Button
-        android:id="@+id/webbtn"
+        android:id="@+id/callbtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="96dp"
-        android:text="네이버"
-        app:layout_constraintStart_toStartOf="@+id/msgbtn"
-        app:layout_constraintTop_toBottomOf="@+id/msgbtn" />
+        android:layout_marginTop="50dp"
+        android:foregroundGravity="center"
+        android:gravity="center"
+        android:text="전화걸기"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/mapbtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
-        android:layout_marginBottom="90dp"
+        android:foregroundGravity="center"
+        android:gravity="center"
         android:text="맵"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/webbtn"
         app:layout_constraintTop_toBottomOf="@+id/webbtn"
-        app:layout_constraintVertical_bias="0.006" />
+        app:layout_constraintVertical_bias="0.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>
