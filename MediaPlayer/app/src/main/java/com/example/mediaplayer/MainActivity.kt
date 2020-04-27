@@ -9,6 +9,7 @@ class MainActivity : AppCompatActivity() {
 
     var mediaPlayer: MediaPlayer?=null
     var vol = 0.0f
+    var flag = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,16 +34,30 @@ class MainActivity : AppCompatActivity() {
                 mediaPlayer?.setVolume(vol, vol)
             }
             mediaPlayer?.start()
+            flag = true
         }
 
         pauseBtn.setOnClickListener {
             mediaPlayer?.pause()
+            flag = false
         }
 
         stopBtn.setOnClickListener {
             mediaPlayer?.stop()
             mediaPlayer?.release()
             mediaPlayer = null
+            flag = false
         }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        mediaPlayer?.pause()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if(flag)
+            mediaPlayer?.start()
     }
 }
