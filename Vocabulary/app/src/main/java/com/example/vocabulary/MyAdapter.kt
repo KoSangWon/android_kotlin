@@ -23,11 +23,11 @@ class MyAdapter(val items: ArrayList<String>)
         var textView3: TextView = itemView.findViewById(R.id.textView3)
 
         init{
-                itemView.setOnClickListener {
-                    itemClickListener?.OnItemClick(this, it, items[adapterPosition], adapterPosition)
-                }
+            itemView.setOnClickListener {
+                itemClickListener?.OnItemClick(this, it, items[adapterPosition], adapterPosition)
             }
         }
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.row, parent, false)

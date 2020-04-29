@@ -64,7 +64,8 @@ class MainActivity : AppCompatActivity() {
 
 
         recyclerView.adapter = adapter
-        val simpleCallback = object :ItemTouchHelper.SimpleCallback(ItemTouchHelper.DOWN or ItemTouchHelper.UP, ItemTouchHelper.RIGHT){
+        val simpleCallback = object :ItemTouchHelper.SimpleCallback(ItemTouchHelper.DOWN or ItemTouchHelper.UP, ItemTouchHelper.LEFT
+        ){
             override fun onMove(
                 recyclerView: RecyclerView,
                 viewHolder: RecyclerView.ViewHolder,
