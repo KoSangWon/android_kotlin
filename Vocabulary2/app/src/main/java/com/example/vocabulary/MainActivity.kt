@@ -30,6 +30,8 @@ class MainActivity : AppCompatActivity() {
         init()
     }
 
+    
+
     private fun init() {
         tts = TextToSpeech(this, TextToSpeech.OnInitListener {
             isTtsReady = true
@@ -85,8 +87,7 @@ class MainActivity : AppCompatActivity() {
         itemTouchHelper.attachToRecyclerView(recyclerView)
     }
 
-    fun readFile(){
-        val scan = Scanner(resources.openRawResource(R.raw.words))
+    fun readFileScan(scan: Scanner){
         while(scan.hasNextLine()){
             val word = scan.nextLine()
             val meaning = scan.nextLine()
@@ -94,6 +95,15 @@ class MainActivity : AppCompatActivity() {
             array.add(word)
         }
         scan.close()
+    }
+
+    fun readFile(){
+
+        val scan2 = Scanner(openFileInput("out.txt"))
+        readFileScan(scan2)
+
+        val scan = Scanner(resources.openRawResource(R.raw.words))
+        readFileScan(scan)
     }
 
 }
