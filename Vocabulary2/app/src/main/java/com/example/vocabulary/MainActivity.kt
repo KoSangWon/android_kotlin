@@ -30,7 +30,15 @@ class MainActivity : AppCompatActivity() {
         init()
     }
 
-    
+    override fun onStop() {
+        super.onStop()
+        tts.stop()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        tts.shutdown()
+    }
 
     private fun init() {
         tts = TextToSpeech(this, TextToSpeech.OnInitListener {
