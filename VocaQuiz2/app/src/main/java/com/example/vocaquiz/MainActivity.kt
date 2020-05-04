@@ -86,8 +86,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    fun readFile(){
-        val scan = Scanner(resources.openRawResource(R.raw.words))
+    fun readFileScan(scan: Scanner){
         while(scan.hasNextLine()){
             val word = scan.nextLine()
             val meaning = scan.nextLine()
@@ -96,6 +95,14 @@ class MainActivity : AppCompatActivity() {
             meaningArray.add(meaning)//뜻 들이 담겨 있는 배열
         }
         scan.close()
+    }
+
+    fun readFile(){
+        val scan2 = Scanner(openFileInput("out.txt"))
+        readFileScan(scan2)
+
+        val scan = Scanner(resources.openRawResource(R.raw.words))
+        readFileScan(scan)
     }
 
 }

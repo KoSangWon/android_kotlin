@@ -25,7 +25,7 @@ class IntroActivity : AppCompatActivity() {
 
         button2.setOnClickListener {
             val i = Intent(this, AddVocActivity::class.java)
-            startActivity(i)
+            startActivityForResult(i, ADDVOC_REQUEST)
         }
     }
 

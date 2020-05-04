@@ -4,20 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFECB4"
     tools:context=".AddVocActivity">
-
-    <TextView
-        android:id="@+id/word"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="198dp"
-        android:layout_marginEnd="21dp"
-        android:layout_marginRight="21dp"
-        android:text="단어"
-        app:layout_constraintEnd_toStartOf="@+id/editWord"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/editWord"
@@ -31,23 +19,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/word" />
 
-    <TextView
-        android:id="@+id/meaning"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="21dp"
-        android:layout_marginRight="21dp"
-        android:text="뜻"
-        app:layout_constraintBaseline_toBaselineOf="@+id/editMeaning"
-        app:layout_constraintEnd_toStartOf="@+id/editMeaning"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toStartOf="parent" />
-
     <EditText
         android:id="@+id/editMeaning"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="82dp"
+        android:layout_marginTop="84dp"
         android:layout_marginEnd="20dp"
         android:layout_marginRight="20dp"
         android:ems="10"
@@ -55,6 +31,33 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/meaning"
         app:layout_constraintTop_toBottomOf="@+id/editWord" />
+
+    <TextView
+        android:id="@+id/word"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="140dp"
+        android:layout_marginEnd="21dp"
+        android:layout_marginRight="21dp"
+        android:text="단어"
+        android:textColor="#000000"
+        app:layout_constraintEnd_toStartOf="@+id/editWord"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/meaning"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="21dp"
+        android:layout_marginRight="21dp"
+        android:text="뜻"
+        android:textColor="#000000"
+        app:layout_constraintBaseline_toBaselineOf="@+id/editMeaning"
+        app:layout_constraintEnd_toStartOf="@+id/editMeaning"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/addBtn"
@@ -65,7 +68,9 @@
         android:layout_marginEnd="19dp"
         android:layout_marginRight="19dp"
         android:layout_marginBottom="184dp"
+        android:background="#009688"
         android:text="추가"
+        android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/cancelBtn"
         app:layout_constraintStart_toStartOf="parent" />
@@ -74,7 +79,10 @@
         android:id="@+id/cancelBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="#009688"
+        android:shadowColor="#FFFFFF"
         android:text="취소"
+        android:textColor="#FFFFFF"
         app:layout_constraintBaseline_toBaselineOf="@+id/addBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/addBtn" />
