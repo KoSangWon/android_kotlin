@@ -2,19 +2,18 @@ package com.example.vocabulary
 
 import android.view.LayoutInflater
 import android.view.View
-import android.view.View.GONE
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 
-class MyAdapter(val items: ArrayList<String>)
+class MyAdapter(val items: ArrayList<MyData>)
     :RecyclerView.Adapter<MyAdapter.MyViewHolder>()
 {
 
     interface OnItemClickListener{
-        fun OnItemClick(holder: MyViewHolder, view:View, data:String, position: Int)
+        fun OnItemClick(holder: MyViewHolder, view:View, data: MyData, position: Int)
     }
 
     var itemClickListener:OnItemClickListener?=null
@@ -44,7 +43,6 @@ class MyAdapter(val items: ArrayList<String>)
         holder.imageView.setImageDrawable(items[position].myappicon)
         holder.textView.text = items[position].myapplabel
         holder.textView3.text = items[position].myappclass
-        holder.textView3.visibility = GONE
     }
 
 
