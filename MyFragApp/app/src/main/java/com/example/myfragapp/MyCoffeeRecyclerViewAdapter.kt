@@ -8,17 +8,12 @@ import android.widget.TextView
 
 
 import com.example.myfragapp.CoffeeFragment.OnListFragmentInteractionListener
-import com.example.myfragapp.dummy.DummyContent.DummyItem
 
 import kotlinx.android.synthetic.main.fragment_coffee.view.*
 
-/**
- * [RecyclerView.Adapter] that can display a [DummyItem] and makes a call to the
- * specified [OnListFragmentInteractionListener].
- * TODO: Replace the implementation with code for your data type.
- */
+
 class MyCoffeeRecyclerViewAdapter(
-    private val mValues: List<DummyItem>,
+    private val mValues: List<String>,
     private val mListener: OnListFragmentInteractionListener?
 ) : RecyclerView.Adapter<MyCoffeeRecyclerViewAdapter.ViewHolder>() {
 
@@ -26,7 +21,7 @@ class MyCoffeeRecyclerViewAdapter(
 
     init {
         mOnClickListener = View.OnClickListener { v ->
-            val item = v.tag as DummyItem
+            val item = v.tag as String
             // Notify the active callbacks interface (the activity, if the fragment is attached to
             // one) that an item has been selected.
             mListener?.onListFragmentInteraction(item)
@@ -41,8 +36,7 @@ class MyCoffeeRecyclerViewAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = mValues[position]
-        holder.mIdView.text = item.id
-        holder.mContentView.text = item.content
+        holder.mContentView.text = item
 
         with(holder.mView) {
             tag = item
@@ -53,7 +47,6 @@ class MyCoffeeRecyclerViewAdapter(
     override fun getItemCount(): Int = mValues.size
 
     inner class ViewHolder(val mView: View) : RecyclerView.ViewHolder(mView) {
-        val mIdView: TextView = mView.item_number
         val mContentView: TextView = mView.content
 
         override fun toString(): String {

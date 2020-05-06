@@ -10,8 +10,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 
-import com.example.myfragapp.dummy.DummyContent
-import com.example.myfragapp.dummy.DummyContent.DummyItem
 
 /**
  * A fragment representing a list of Items.
@@ -20,7 +18,8 @@ import com.example.myfragapp.dummy.DummyContent.DummyItem
  */
 class CoffeeFragment : Fragment() {
 
-    // TODO: Customize parameters
+    val arrayList = arrayListOf<String>("아메리카노", "카페라떼", "카푸치노")
+
     private var columnCount = 1
 
     private var listener: OnListFragmentInteractionListener? = null
@@ -38,7 +37,7 @@ class CoffeeFragment : Fragment() {
                     columnCount <= 1 -> LinearLayoutManager(context)
                     else -> GridLayoutManager(context, columnCount)
                 }
-                adapter = MyCoffeeRecyclerViewAdapter(DummyContent.ITEMS, listener)
+                adapter = MyCoffeeRecyclerViewAdapter(arrayList, listener)
             }
         }
         return view
@@ -71,7 +70,7 @@ class CoffeeFragment : Fragment() {
      */
     interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name
-        fun onListFragmentInteraction(item: DummyItem?)
+        fun onListFragmentInteraction(item: String?)
     }
 
 }
