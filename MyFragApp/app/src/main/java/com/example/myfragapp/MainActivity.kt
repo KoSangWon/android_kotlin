@@ -3,12 +3,13 @@ package com.example.myfragapp
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.viewpager.widget.ViewPager
+import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), CoffeeFragment.OnListFragmentInteractionListener {
 
-    val imageFragment = ImageFragment()
-    val coffeeFragment = CoffeeFragment()
+    val textArray = arrayListOf<String>("이미지", "리스트")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -17,26 +18,11 @@ class MainActivity : AppCompatActivity(), CoffeeFragment.OnListFragmentInteracti
     }
 
     private fun init(){
-        val fragment = supportFragmentManager.beginTransaction()
-        fragment.addToBackStack(null)
-        fragment.replace(R.id.frame, imageFragment)
-        fragment.commit()
-        button.setOnClickListener {
-            if(!imageFragment.isVisible){
-                val fragment = supportFragmentManager.beginTransaction()
-                fragment.addToBackStack(null)
-                fragment.replace(R.id.frame, imageFragment)
-                fragment.commit()
-            }
-        }
-        button1.setOnClickListener {
-            if(!coffeeFragment.isVisible){
-                val fragment = supportFragmentManager.beginTransaction()
-                fragment.addToBackStack(null)
-                fragment.replace(R.id.frame, coffeeFragment)
-                fragment.commit()
-            }
-        }
+        viewPager.adapter = MyFragStateAdapter(this)
+        TabLayoutMediator(tabLayout, viewPager){
+            tab, position ->
+            tab.text = textArray[position]
+        }.attach()
     }
 
     override fun onListFragmentInteraction(item: String?) {
