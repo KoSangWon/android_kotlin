@@ -1,6 +1,9 @@
 package com.example.newsparsing
 
 import android.annotation.SuppressLint
+import android.content.Intent
+import android.content.Intent.ACTION_VIEW
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -23,7 +26,20 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun init() {
-        
+        recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        adapter = MyAdapter(ArrayList<MyData>())
+        adapter.itemClickListener = object:MyAdapter.OnItemClickListener{
+            override fun OnItemClick(
+                holder: MyAdapter.MyViewHolder,
+                view: View,
+                data: MyData,
+                position: Int
+            ) {
+                val intent = Intent(ACTION_VIEW, Uri.parse(adapter.items[position].url))
+                startActivity(intent)
+            }
+        }
+        recyclerView.adapter = adapter
     }
 
 }
