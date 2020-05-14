@@ -8,6 +8,7 @@ import android.net.Uri
 import android.os.AsyncTask
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.core.view.get
@@ -16,7 +17,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main.view.*
 import kotlinx.android.synthetic.main.row.view.*
+import org.json.JSONObject
 import org.jsoup.Jsoup
+import org.jsoup.parser.Parser
 import java.lang.ref.WeakReference
 import java.net.URL
 import java.util.*
@@ -29,7 +32,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         init()
-        startTask()
+//        startTask()
+//        startXMLTask()
+        startJSONTask()
     }
 
     fun startTask(){
@@ -37,11 +42,23 @@ class MainActivity : AppCompatActivity() {
         task.execute(URL("https://www.daum.net"))
     }
 
+    fun startXMLTask(){
+        val task = MyAsyncTask(this)
+        task.execute(URL("http://fs.jtbc.joins.com//RSS/culture.xml"))
+    }
+
+    fun startJSONTask(){
+        val task = MyAsyncTask(this)
+        task.execute(URL("http://api.icndb.com/jokes/random"))
+    }
+
     fun init() {
 
         swiperefresh.setOnRefreshListener {
             swiperefresh.isRefreshing = true
-            startTask()
+            //startXMLTask()
+            //startTask()
+            startJSONTask()
         }
 
         recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
@@ -67,11 +84,27 @@ class MainActivity : AppCompatActivity() {
         override fun doInBackground(vararg params: URL?): Unit {
             val activity = activityreference.get()
             activity?.adapter?.items?.clear()
-            val doc = Jsoup.connect(params[0].toString()).get()
-            val headlines = doc.select("ul.list_txt>li>a")
-            for(news in headlines){
-                activity?.adapter?.items?.add(MyData(news.text(), news.absUrl("href")))
-            }
+
+            val doc = Jsoup.connect(params[0].toString()).ignoreContentType(true).get()
+            //Log.i("JSON : ", doc.text())
+            val json = JSONObject(doc.text())
+            val joke = json.getJSONObject("value")
+            val jokestr = joke.getString("joke")
+            Log.i("JSON Joke ", jokestr)
+
+//            XML 파싱 코드
+//            val doc = Jsoup.connect(params[0].toString()).parser(Parser.xmlParser()).get()
+//            val headlines = doc.select("item")
+//            for(news in headlines){
+//                activity?.adapter?.items?.add(MyData(news.select("title").text(), news.select("link").text()))
+//            }
+
+//            html 파싱 코드
+//            val doc = Jsoup.connect(params[0].toString()).get()
+//            val headlines = doc.select("ul.list_txt>li>a")
+//            for(news in headlines){
+//                activity?.adapter?.items?.add(MyData(news.text(), news.absUrl("href")))
+//            }
         }
 
         override fun onPostExecute(result: Unit?) {
