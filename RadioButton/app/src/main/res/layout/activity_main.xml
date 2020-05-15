@@ -40,7 +40,7 @@
             android:layout_height="wrap_content"
             android:text="그림3" />
     </RadioGroup>
-    
+
 
     <ImageView
         android:id="@+id/imageView"
