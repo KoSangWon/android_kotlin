@@ -6,7 +6,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.android.synthetic.main.activity_init.*
 
 class InitActivity : AppCompatActivity() {
-    val textArray = arrayListOf<String>("배경음악", "공부")
+    val textArray = arrayListOf<String>("STUDY", "MUSIC")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

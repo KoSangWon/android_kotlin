@@ -18,12 +18,12 @@ class IntroActivity : AppCompatActivity() {
     }
 
     private fun init(){
-        button.setOnClickListener {
+        studyBtn.setOnClickListener {
             val i = Intent(this, MainActivity::class.java)
             startActivity(i)
         }
 
-        button2.setOnClickListener {
+        quizBtn.setOnClickListener {
             val i = Intent(this, AddVocActivity::class.java)
             startActivityForResult(i, ADDVOC_REQUEST)
         }
