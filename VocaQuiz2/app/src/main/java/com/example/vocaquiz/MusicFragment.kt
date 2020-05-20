@@ -28,5 +28,10 @@ class MusicFragment : Fragment() {
             val i = Intent(activity, MyMusicActivity::class.java)
             startActivity(i)
         }
+
+        recMusicBtn.setOnClickListener {
+            val i = Intent(activity, RecMusicActivity::class.java)
+            startActivity(i)
+        }
     }
 }

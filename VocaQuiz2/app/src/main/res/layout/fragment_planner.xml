@@ -4,42 +4,42 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".StudyFragment">
+    tools:context=".PlannerFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#FFECB4"
-        tools:context=".IntroActivity">
+        tools:context=".PlannerActivity">
 
-        <Button
-            android:id="@+id/studyBtn"
+        <TextView
+            android:id="@+id/dateText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="#009688"
-            android:text="공부 사이트"
-            android:textColor="#FFFFFF"
+            android:gravity="center"
+            android:text="오늘날짜"
+            android:textColor="#000000"
+            android:textSize="28sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.501"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.335" />
+            app:layout_constraintVertical_bias="0.153" />
 
         <Button
-            android:id="@+id/quizBtn"
+            android:id="@+id/plannerBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="#009688"
             android:shadowColor="#FFFFFF"
-            android:text="단어 퀴즈"
+            android:text="계획 짜기"
             android:textColor="#FFFFFF"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.501"
+            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.66" />
+            app:layout_constraintVertical_bias="0.499" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
