@@ -10,8 +10,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main.view.*
 import kotlinx.android.synthetic.main.row.view.*
+import java.io.FileNotFoundException
 import java.util.*
 import kotlin.collections.ArrayList
+import kotlin.math.log
 
 class MainActivity : AppCompatActivity() {
     var words = mutableMapOf<String, String>()
@@ -98,8 +100,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun readFile(){
-        val scan2 = Scanner(openFileInput("out.txt"))
-        readFileScan(scan2)
+
+        val scan2 = try { Scanner(openFileInput("out.txt")) } catch (e: FileNotFoundException){ null }
+        if (scan2 != null) {
+            readFileScan(scan2)
+        }
+
+
 
         val scan = Scanner(resources.openRawResource(R.raw.words))
         readFileScan(scan)
