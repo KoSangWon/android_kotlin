@@ -37,19 +37,19 @@ class MainActivity : AppCompatActivity() {
         startJSONTask()
     }
 
-    fun startTask(){
-        val task = MyAsyncTask(this)
-        task.execute(URL("https://www.daum.net"))
-    }
-
-    fun startXMLTask(){
-        val task = MyAsyncTask(this)
-        task.execute(URL("http://fs.jtbc.joins.com//RSS/culture.xml"))
-    }
+//    fun startTask(){
+//        val task = MyAsyncTask(this)
+//        task.execute(URL("https://www.daum.net"))
+//    }
+//
+//    fun startXMLTask(){
+//        val task = MyAsyncTask(this)
+//        task.execute(URL("http://fs.jtbc.joins.com//RSS/culture.xml"))
+//    }
 
     fun startJSONTask(){
         val task = MyAsyncTask(this)
-        task.execute(URL("http://api.icndb.com/jokes/random"))
+        task.execute(URL("http://54.180.80.25/temp.php"))
     }
 
     fun init() {
@@ -57,7 +57,7 @@ class MainActivity : AppCompatActivity() {
         swiperefresh.setOnRefreshListener {
             swiperefresh.isRefreshing = true
             //startXMLTask()
-            //startTask()
+//            startTask()
             startJSONTask()
         }
 
@@ -86,11 +86,14 @@ class MainActivity : AppCompatActivity() {
             activity?.adapter?.items?.clear()
 
             val doc = Jsoup.connect(params[0].toString()).ignoreContentType(true).get()
-            //Log.i("JSON : ", doc.text())
+            Log.i("JSON : ", doc.text())
             val json = JSONObject(doc.text())
-            val joke = json.getJSONObject("value")
-            val jokestr = joke.getString("joke")
-            Log.i("JSON Joke ", jokestr)
+            val array = json.getJSONArray("result")
+            val temperature = array.getJSONObject(0).getString("temperature")
+//            val joke = json.getJSONObject("result")
+//            val jokestr = joke.getString("temperature")
+
+            Log.i("Temperature ", temperature)
 
 //            XML 파싱 코드
 //            val doc = Jsoup.connect(params[0].toString()).parser(Parser.xmlParser()).get()
