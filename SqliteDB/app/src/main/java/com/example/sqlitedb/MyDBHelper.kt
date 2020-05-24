@@ -60,38 +60,5 @@ class MyDBHelper(val context: Context) : SQLiteOpenHelper(context, DB_NAME, null
         db.close()
     }
 
-    fun showRecord(cursor: Cursor){
-        cursor.moveToFirst()
-        val count = cursor.columnCount
-        val recordcount = cursor.count
-        val activity = context as MainActivity
-        activity.tableLayout.removeAllViewsInLayout()
-        // 컬럼 타이틀 만들기
-        val tablerow = TableRow(activity)
-        val rowParam = TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT, count.toFloat())
-        tablerow.layoutParams = rowParam
-        val viewParam = TableRow.LayoutParams(0, 100, 1f)
-        for(i in 0 until count){
-            val textView = TextView(activity)
-            textView.layoutParams = viewParam
-            textView.text = cursor.getColumnName(i)
-            textView.setBackgroundColor(Color.LTGRAY)
-            textView.textSize = 15.0f
-            textView.gravity = Gravity.CENTER
-        }
-        activity.tableLayout.addView(tablerow)
-        // 실제 레코드 읽어오기
-        do{
-            val row = TableRow(activity)
-            row.layoutParams = rowParam
-            for(i in 0 until count){
-                val textView = TextView(activity)
-                textView.layoutParams = viewParam
-                textView.text = cursor.getString(i)
-                textView.textSize = 13.0f
-                row.addView(textView)
-            }
-            activity.tableLayout.addView(row)
-        }while (cursor.moveToNext())
-    }
+
 }
