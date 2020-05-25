@@ -12,10 +12,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         init()
+        getAllRecord()
     }
 
     fun init(){
         myDBHelper = MyDBHelper(this)
+
         insertbtn.setOnClickListener {
             val quantity = pQuantityEdit.text.toString().toInt()
             val name = pNameEdit.text.toString()
@@ -30,7 +32,13 @@ class MainActivity : AppCompatActivity() {
         }
 
         deletebtn.setOnClickListener {
-
+            var result = myDBHelper.deleteProduct(pIdEdit.text.toString())
+            if(result){
+                Toast.makeText(this, "DELETE SUCCESS", Toast.LENGTH_SHORT).show()
+                getAllRecord()
+            }else{
+                Toast.makeText(this, "DELETE FAILED", Toast.LENGTH_SHORT).show()
+            }
         }
 
         updatebtn.setOnClickListener {
@@ -38,7 +46,13 @@ class MainActivity : AppCompatActivity() {
         }
 
         findbtn.setOnClickListener {
-
+            val name = pNameEdit.text.toString()
+            val result = myDBHelper.findProduct(name)
+            if(result){
+                Toast.makeText(this, "RECORD FOUND", Toast.LENGTH_SHORT).show()
+            }else{
+                Toast.makeText(this, "NO MATCH FOUND", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
