@@ -2,6 +2,9 @@ package com.example.sqlitedb
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
+import android.widget.TextView
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -42,7 +45,17 @@ class MainActivity : AppCompatActivity() {
         }
 
         updatebtn.setOnClickListener {
-
+            val ID = pIdEdit.text.toString().toInt()
+            val quantity = pQuantityEdit.text.toString().toInt()
+            val name = pNameEdit.text.toString()
+            val product = Product(ID, name, quantity)
+            val result = myDBHelper.updateProduct(product)
+            if(result){
+                Toast.makeText(this, "UPDATE SUCCESS", Toast.LENGTH_SHORT).show()
+                getAllRecord()
+            }else{
+                Toast.makeText(this, "UPDATE FAILED", Toast.LENGTH_SHORT).show()
+            }
         }
 
         findbtn.setOnClickListener {
@@ -54,6 +67,21 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this, "NO MATCH FOUND", Toast.LENGTH_SHORT).show()
             }
         }
+
+        testSql.addTextChangedListener(object:TextWatcher{
+            override fun afterTextChanged(s: Editable?) {
+                val name = s.toString()
+                val result = myDBHelper.findProduct2(name)
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                //TODO("Not yet implemented")
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                //TODO("Not yet implemented")
+            }
+        })
     }
 
     fun getAllRecord(){

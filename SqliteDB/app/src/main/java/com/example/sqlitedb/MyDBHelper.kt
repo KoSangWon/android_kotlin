@@ -19,7 +19,6 @@ class MyDBHelper(val context: Context) : SQLiteOpenHelper(context, DB_NAME, null
         val PID = "pid"
         val PNAME = "pname"
         val PQUANTITY = "pquantity"
-
     }
 
     override fun onCreate(db: SQLiteDatabase?) {
@@ -42,6 +41,10 @@ class MyDBHelper(val context: Context) : SQLiteOpenHelper(context, DB_NAME, null
         values.put(PQUANTITY, product.pQuantity)
         val db = this.writableDatabase
         if(db.insert(TABLE_NAME, null, values) > 0){
+            val activity = context as MainActivity
+            activity.pIdEdit.setText("")
+            activity.pNameEdit.setText("")
+            activity.pQuantityEdit.setText("")
             db.close()
             return true
         }else{
@@ -50,12 +53,19 @@ class MyDBHelper(val context: Context) : SQLiteOpenHelper(context, DB_NAME, null
         }
     }
 
-    fun deleteProduct(pid:String):Boolean{
-        val strsql = "select * from " + TABLE_NAME + " where " + PID + " = \'" + pid + "\'"
+    fun updateProduct(product: Product):Boolean{
+        val strsql = "select * from " + TABLE_NAME + " where " + PID + " = \'" + product.pId + "\'"
         val db = this.writableDatabase
         val cursor = db.rawQuery(strsql, null)
         if(cursor.moveToFirst()){
-            db.delete(TABLE_NAME, PID+"=?", arrayOf(pid))
+            val values = ContentValues()
+            values.put(PNAME, product.pName)
+            values.put(PQUANTITY, product.pQuantity)
+            db.update(TABLE_NAME, values, PID+"=?", arrayOf(product.pId.toString()))
+            val activity = context as MainActivity
+            activity.pIdEdit.setText("")
+            activity.pNameEdit.setText("")
+            activity.pQuantityEdit.setText("")
             cursor.close()
             db.close()
             return true
@@ -65,7 +75,26 @@ class MyDBHelper(val context: Context) : SQLiteOpenHelper(context, DB_NAME, null
         return false
     }
 
-    //select * fro product where pname = '새우깡'
+    fun deleteProduct(pid:String):Boolean{
+        val strsql = "select * from " + TABLE_NAME + " where " + PID + " = \'" + pid + "\'"
+        val db = this.writableDatabase
+        val cursor = db.rawQuery(strsql, null)
+        if(cursor.moveToFirst()){
+            db.delete(TABLE_NAME, PID+"=?", arrayOf(pid))
+            val activity = context as MainActivity
+            activity.pIdEdit.setText("")
+            activity.pNameEdit.setText("")
+            activity.pQuantityEdit.setText("")
+            cursor.close()
+            db.close()
+            return true
+        }
+        cursor.close()
+        db.close()
+        return false
+    }
+
+    //select * from product where pname = '새우깡'
     fun findProduct(pname: String):Boolean{
         val strsql = "select * from " + TABLE_NAME + " where " + PNAME + " = \'" + pname + "\'"
         val db = this.readableDatabase
@@ -80,6 +109,23 @@ class MyDBHelper(val context: Context) : SQLiteOpenHelper(context, DB_NAME, null
         db.close()
         return false;
     }
+
+    //select * from product where pname like '김%'
+    fun findProduct2(pname: String):Boolean{
+        val strsql = "select * from " + TABLE_NAME + " where " + PNAME + " LIKE \'" + pname + "%\'"
+        val db = this.readableDatabase
+        val cursor = db.rawQuery(strsql, null)
+        if(cursor.count != 0){
+            showRecord(cursor)
+            cursor.close()
+            db.close()
+            return true;
+        }
+        cursor.close()
+        db.close()
+        return false;
+    }
+
 
     fun getAllRecord(){
         val strsql = "select * from " + TABLE_NAME

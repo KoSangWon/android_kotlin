@@ -103,6 +103,11 @@
             android:text="UPDATE" />
     </LinearLayout>
 
+    <EditText
+        android:id="@+id/testSql"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
     <TableLayout
         android:id="@+id/tableLayout"
         android:layout_width="match_parent"
