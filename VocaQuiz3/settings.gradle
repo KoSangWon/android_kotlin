@@ -1,2 +1,2 @@
-rootProject.name='VocaQuiz3'
+rootProject.name='VocaQuiz'
 include ':app'
