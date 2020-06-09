@@ -49,7 +49,7 @@ class MainActivity : AppCompatActivity() {
 
     fun startJSONTask(){
         val task = MyAsyncTask(this)
-        task.execute(URL("http://54.180.80.25/temp.php"))
+        task.execute(URL("http://api.icndb.com/jokes/random"))
     }
 
     fun init() {
@@ -90,10 +90,10 @@ class MainActivity : AppCompatActivity() {
             val json = JSONObject(doc.text())
             val array = json.getJSONArray("result")
             val temperature = array.getJSONObject(0).getString("temperature")
-//            val joke = json.getJSONObject("result")
-//            val jokestr = joke.getString("temperature")
+            val joke = json.getJSONObject("result")
+            val jokestr = joke.getString("temperature")
 
-            Log.i("Temperature ", temperature)
+            Log.i("joke: ", jokestr)
 
 //            XML 파싱 코드
 //            val doc = Jsoup.connect(params[0].toString()).parser(Parser.xmlParser()).get()
